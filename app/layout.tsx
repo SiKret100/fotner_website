@@ -14,11 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body>
+      <body className={"bg-neutral-100"}>
 
         <NavBar />
 
-        <main className={"bg-gray-50"} >{children}</main>
+        <main className={""} >{children}</main>
 
       </body>
     </html>
