@@ -7,6 +7,7 @@ import Cover2 from "@/public/portfolio_cover/img_2.jpg";
 import Cover3 from "@/public/portfolio_cover/img_3.jpg";
 import Cover4 from "@/public/portfolio_cover/img_4.jpg";
 import Cover5 from "@/public/portfolio_cover/img_5.jpg";
+import Link from "next/link";
 
 export default function PortfolioPage() {
     const { scrollYProgress } = useScroll();
@@ -22,6 +23,7 @@ export default function PortfolioPage() {
         "HUNTRUN Białka Tatrzańska",
         "BINKIEWICZ - Ludzie Mówią",
     ];
+    const routes = ["studniowkapionki", "ewelinapatryk"]
 
     const transition1 = {
         duration: 1.4,
@@ -51,26 +53,29 @@ export default function PortfolioPage() {
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10 mt-10 mb-6"
             >
                 {[Cover1, Cover2, Cover3, Cover4, Cover5].map((cover, index) => (
-                    <div key={index} className="flex flex-col bg-neutral-100">
-                        <div className="overflow-hidden relative group">
-                            <motion.div
-                                className="flex flex-col items-center justify-center transition-transform duration-300 transform ease-in-out hover:scale-110 hover:brightness-75"
-                            >
-                                <Image
-                                    src={cover}
-                                    alt={`Cover ${index + 1}`}
-                                    width="600"
-                                    className="cursor-pointer"
-                                />
-                            </motion.div>
+                    <Link key = {index} href={`/portfolio/${routes[index]}`}>
+                        <div key={index} className="flex flex-col bg-neutral-100">
+                            <div className="overflow-hidden relative group">
+                                <motion.div
+                                    className="flex flex-col items-center justify-center transition-transform duration-300 transform ease-in-out hover:scale-110 hover:brightness-75"
+                                >
+                                    <Image
+                                        src={cover}
+                                        alt={`Cover ${index + 1}`}
+                                        width="600"
+                                        className="cursor-pointer"
+                                    />
+                                </motion.div>
+                            </div>
+                            <div className="text-neutral-700 font-integral-medium italic text-xs font-light ml-2 mt-2">
+                                {dates[index]}
+                            </div>
+                            <div className="text-black font-integral-medium font-light text-xl ml-2">
+                                {titles[index]}
+                            </div>
                         </div>
-                        <div className="text-neutral-700 font-integral-medium italic text-xs font-light ml-2 mt-2">
-                            {dates[index]}
-                        </div>
-                        <div className="text-black font-integral-medium font-light text-xl ml-2">
-                            {titles[index]}
-                        </div>
-                    </div>
+                    </Link>
+
                 ))}
             </motion.div>
         </div>
