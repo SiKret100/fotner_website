@@ -14,7 +14,7 @@ export default function NavBar() {
         setMenuOpen(!menuOpen);
     }
     return (
-        <nav className={"fixed w-full h-20 bg-neutral-950 shadow-xl "}>
+        <nav className={"fixed w-full h-20 bg-neutral-950 shadow-xl z-50"}>
 
             <div className="relative flex items-center h-full px-4 2xl:px-16 justify-start">
                 <Link href="/" className="">
@@ -108,7 +108,7 @@ export default function NavBar() {
                             </li>
                         </Link>
 
-                        <Link href="/">
+                        <Link href="/portfolio">
                             <li
                                 onClick={() => setMenuOpen(false)}
                                 className={"font-integral-medium font-bold py-4 cursor-pointer"}>Nasza praca

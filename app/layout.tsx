@@ -16,8 +16,8 @@ export default function RootLayout({
       <html lang="pl">
       <body className="bg-neutral-100">
       <NavBar />
-      <AnimatePresence mode="wait" initial={false}>
-        <main key={pathname} className="pt-32">
+      <AnimatePresence mode="wait" initial={true}>
+        <main key={pathname} className="pt-20">
           {children}
         </main>
       </AnimatePresence>

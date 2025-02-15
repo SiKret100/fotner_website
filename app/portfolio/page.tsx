@@ -1,71 +1,86 @@
 'use client';
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Cover1 from "@/public/portfolio_cover/img_1.jpg";
 import Cover2 from "@/public/portfolio_cover/img_2.jpg";
 import Cover3 from "@/public/portfolio_cover/img_3.jpg";
 import Cover4 from "@/public/portfolio_cover/img_4.jpg";
 import Cover5 from "@/public/portfolio_cover/img_5.jpg";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-
-const transition1 = {
-    duration: 1.4,
-    ease: [0.6, 0.01, 0, 0.9],
-};
 
 export default function PortfolioPage() {
-    const pathname = usePathname();
+    const { scrollYProgress } = useScroll();
 
-    console.log("PortfolioPage rendered with pathname:", pathname);
+    const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -200]); // przesuwanie w górę
+    const imageY = useTransform(scrollYProgress, [0.2, 1], [200, 0]); // obrazy w górę
+
+
+
+
+    const dates = ["Luty 2025", "Sierpień 2024", "Listopad 2024", "Wrzesień 2024", "Wrzesień 2024"];
+    const titles = [
+        "Studniówka Pionki",
+        "Ślub Eweliny & Patryka",
+        "18 urodziny Igi",
+        "HUNTRUN Białka Tatrzańska",
+        "BINKIEWICZ - Ludzie Mówią",
+    ];
+
+    const transition1 = {
+        duration: 1.4,
+        ease: [0.6, 0.01, 0, 0.9],
+    };
 
     return (
-        <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: "100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "100%" }}
-            transition={transition1}
-            className="bg-neutral-900 flex flex-col justify-center mx-60 pb-10"
-        >
-            <div className="font-integral-medium text-3xl font-light text-white text-center pt-10">
-                Nasze portfolio
-            </div>
+        <div className="bg-neutral-900 flex flex-col min-h-screen">
 
-            <div className="font-integral-medium text-xl font-light text-white text-center pt-5">
-                Kilka naszych przykładowych prac prezentujących co oferujemy
-            </div>
+            <motion.div
+                initial={{ opacity: 0, y: "100%" }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: "100%" }}
+                transition={transition1}
+                style={{ y: titleY }}
+                className="text-center top-10"
+            >
+                <div className="font-integral-medium text-3xl font-bold text-white pt-10">
+                    Nasze portfolio
+                </div>
+                <div className="font-integral-medium text-xl font-light text-white pt-5">
+                    Kilka wydarzeń które z wami przeżyliśmy
+                </div>
+                <div className="w-1/4 h-[2px] bg-white mx-auto mt-10"></div>
+            </motion.div>
 
             <motion.div
                 initial={{ opacity: 0, y: "50%" }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: "50%" }}
                 transition={transition1}
-                className="flex flex-row flex-wrap gap-3 justify-center pt-10"
+
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10 mt-10"
             >
                 {[Cover1, Cover2, Cover3, Cover4, Cover5].map((cover, index) => (
                     <div key={index} className="flex flex-col bg-neutral-100">
                         <div className="overflow-hidden relative group">
-                            <div className="flex flex-col items-center justify-center transition-transform duration-300 transform ease-in-out hover:scale-110 hover:brightness-75">
+                            <motion.div
+                                className="flex flex-col items-center justify-center transition-transform duration-300 transform ease-in-out hover:scale-110 hover:brightness-75"
+                            >
                                 <Image
                                     src={cover}
                                     alt={`Cover ${index + 1}`}
-                                    width="400"
+                                    width="600"
                                     className="cursor-pointer"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
-                        <div className="text-black font-integral-medium font-light">
-                            {[
-                                "Studniówka Pionki Luty 2025",
-                                "Wesele Eweliny & Patryka Sierpień 2024",
-                                "18 urodziny Igi 2024",
-                                "HUNTRUN 2024 Białka Tatrzańska",
-                                "Teledysk BINKIEWICZ - Ludzie Mówią",
-                            ][index]}
+                        <div className="text-neutral-700 font-integral-medium italic text-xs font-light ml-2 mt-2">
+                            {dates[index]}
+                        </div>
+                        <div className="text-black font-integral-medium font-light text-xl ml-2">
+                            {titles[index]}
                         </div>
                     </div>
                 ))}
             </motion.div>
-        </motion.div>
+        </div>
     );
 }
