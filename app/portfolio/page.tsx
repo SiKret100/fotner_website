@@ -1,4 +1,5 @@
 'use client';
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Cover1 from "@/public/portfolio_cover/img_1.jpg";
@@ -10,11 +11,8 @@ import Cover5 from "@/public/portfolio_cover/img_5.jpg";
 export default function PortfolioPage() {
     const { scrollYProgress } = useScroll();
 
-    const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -200]); // przesuwanie w górę
-    const imageY = useTransform(scrollYProgress, [0.2, 1], [200, 0]); // obrazy w górę
-
-
-
+    const titleY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
+    const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
     const dates = ["Luty 2025", "Sierpień 2024", "Listopad 2024", "Wrzesień 2024", "Wrzesień 2024"];
     const titles = [
@@ -32,14 +30,9 @@ export default function PortfolioPage() {
 
     return (
         <div className="bg-neutral-900 flex flex-col min-h-screen">
-
             <motion.div
-                initial={{ opacity: 0, y: "100%" }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: "100%" }}
-                transition={transition1}
-                style={{ y: titleY }}
-                className="text-center top-10"
+                style={{ y: titleY, opacity }}
+                className="text-center top-10 sticky"
             >
                 <div className="font-integral-medium text-3xl font-bold text-white pt-10">
                     Nasze portfolio
@@ -55,8 +48,7 @@ export default function PortfolioPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: "50%" }}
                 transition={transition1}
-
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10 mt-10"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-10 mt-10 mb-6"
             >
                 {[Cover1, Cover2, Cover3, Cover4, Cover5].map((cover, index) => (
                     <div key={index} className="flex flex-col bg-neutral-100">
