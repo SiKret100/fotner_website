@@ -16,9 +16,9 @@ export default function RootLayout({
     <html lang="pl">
       <body className={"bg-neutral-100"}>
 
-        <NavBar />
+        <NavBar/>
 
-        <main className={""} >{children}</main>
+        <main className={"pt-32"} >{children}</main>
 
       </body>
     </html>

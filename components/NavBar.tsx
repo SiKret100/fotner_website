@@ -14,7 +14,7 @@ export default function NavBar() {
         setMenuOpen(!menuOpen);
     }
     return (
-        <nav className={"fixed w-full h-20 bg-neutral-950 shadow-xl"}>
+        <nav className={"fixed w-full h-20 bg-neutral-950 shadow-xl "}>
 
             <div className="relative flex items-center h-full px-4 2xl:px-16 justify-start">
                 <Link href="/" className="">
@@ -39,7 +39,7 @@ export default function NavBar() {
                             </li>
                         </Link>
 
-                        <Link href="/">
+                        <Link href="/portfolio">
                             <li className="font-integral-medium font-bold mr-10 text-white bg-black p-1 hover:bg-white hover:text-black transition ease-out duration-200">Nasza
                                 praca
                             </li>
@@ -52,14 +52,18 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex flex-row justify-end ml-auto">
-                    <Link href="/" className="cursor-pointer">
-                        <AiOutlineInstagram size={25} className="cursor-pointer" color="white"/>
+                    <Link href="/">
+                        <AiOutlineInstagram size={25} className="cursor-pointer hover:scale-125 transform ease-in-out duration-200" color="white"/>
                     </Link>
-                    <AiOutlineFacebook size={25} className="cursor-pointer ml-10" color="white"/>
-                    <AiOutlineTikTok size={25} className="cursor-pointer ml-10" color="white"/>
+                    <Link href={"/"}>
+                        <AiOutlineFacebook size={25} className="cursor-pointer ml-10 hover:scale-125 transform ease-in-out duration-200" color="white"/>
+                    </Link>
+                    <Link href={"/"}>
+                        <AiOutlineTikTok size={25} className="cursor-pointer ml-10 hover:scale-125 transform ease-in-out duration-200" color="white"/>
+                    </Link>
                 </div>
 
-                <div onClick={handleNav} className={"sm:hidden cursor-pointer pl-10"}>
+                <div onClick={handleNav} className={"sm:hidden cursor-pointer pl-10 hover:scale-125 transform ease-in-out duration-200"}>
                     <AiOutlineMenu size={25} color={"white"}/>
                 </div>
 
