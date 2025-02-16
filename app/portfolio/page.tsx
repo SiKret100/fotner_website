@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Cover1 from "@/public/portfolio_cover/img_1.jpg";
@@ -8,6 +8,7 @@ import Cover3 from "@/public/portfolio_cover/img_3.jpg";
 import Cover4 from "@/public/portfolio_cover/img_4.jpg";
 import Cover5 from "@/public/portfolio_cover/img_5.jpg";
 import Link from "next/link";
+import transition1 from "@/components/transition1";
 
 export default function PortfolioPage() {
     const { scrollYProgress } = useScroll();
@@ -23,12 +24,8 @@ export default function PortfolioPage() {
         "HUNTRUN Białka Tatrzańska",
         "BINKIEWICZ - Ludzie Mówią",
     ];
-    const routes = ["studniowkapionki", "ewelinapatryk"]
+    const routes = ["studniowkapionki", "ewelinapatryk", "18igi"]
 
-    const transition1 = {
-        duration: 1.4,
-        ease: [0.6, 0.01, 0, 0.9],
-    };
 
     return (
         <div className="bg-neutral-900 flex flex-col min-h-screen">
