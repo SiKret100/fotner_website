@@ -17,42 +17,40 @@ export default function GalleryPage({FolderName, TopText, BottomText} : {FolderN
     }
 
     return (
-        <div className="bg-neutral-900 min-h-screem">
+        <div className="bg-neutral-900 min-h-screen">
 
-            <div className="max-w-screen-lg mx-auto">
+            <div className={"relative  max-w-screen-lg mx-auto"}>
 
-                <div className="relative flex items-center">
-                    <div className="absolute left-0 flex sm:items-center items-end h-full">
-                        <motion.div
-                            initial={{ opacity: 0, y: "-50%" }}
-                            animate={{ opacity: 1, y: 0}}
-                            exit={{ opacity: 0, y: "-50%" }}
-                            transition={transition1}
-                            className="sm:text-5xl text-xl text-white pl-10 flex-row">
-                            <div className="font-integral-medium font-bold">
-                                {TopText}
-                            </div>
-
-                            <div className={"font-integral-medium"}>
-                                {BottomText}
-                            </div>
-                        </motion.div>
-
+                <motion.div
+                    initial={{opacity: 0, y: "-50%"}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: "-50%"}}
+                    transition={transition1}
+                    className={"absolute text-white font-integral-medium sm:text-5xl text-xl flex flex-col justify-center h-full"}>
+                    <div className={"font-bold"}>
+                        {TopText}
                     </div>
+                    <div className={""}>
+                        {BottomText}
+                    </div>
+                </motion.div>
 
-                    <motion.div
-
-                        className="ml-auto px-4">
-                        <Image
-                            src ={ `/${FolderName}/img_14.jpg`}
-                            alt="Image 14"
-                            width={800}
-                            height={800}
-                        />
-                    </motion.div>
+                <div className={"flex justify-end"}>
+                    <Image
+                        src={`/${FolderName}/img_14.jpg`}
+                        alt="Image 14"
+                        width={800}
+                        height={800}
+                        className={""}
+                    />
                 </div>
+            </div>
 
-                <div className="w-1/4 h-[2px] bg-white mx-auto mt-10 mb-6"></div>
+
+            <div className="mx-auto">
+
+
+                <div className=" max-w-screen-lg h-[2px] bg-white mx-auto mt-10 mb-6"></div>
 
 
                 <div>
@@ -75,9 +73,9 @@ export default function GalleryPage({FolderName, TopText, BottomText} : {FolderN
                     <div className="columns-3 gap-4 px-4 pb-4">
                         {rawImages.map((image, index) => (
                             <motion.div
-                                initial={{ opacity: 0, scale:0 }}
-                                animate={{ opacity: 1, scale:1}}
-                                exit={{ opacity: 0, y: "-50%" }}
+                                initial={{opacity: 0, scale: 0}}
+                                animate={{opacity: 1, scale: 1}}
+                                exit={{opacity: 0, y: "-50%"}}
                                 transition={transition1}
                                 key={index}
                                 className="pt-4">
@@ -95,11 +93,11 @@ export default function GalleryPage({FolderName, TopText, BottomText} : {FolderN
                             </motion.div>
                         ))}
                     </div>
+
                 </div>
             </div>
         </div>
     );
-
 
 
 }
