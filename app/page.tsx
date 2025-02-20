@@ -1,11 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import img_dawid from "@/public/homepage/img_dawid.png";
-import img_bartek from "@/public/homepage/img_bartek.png";
+import img_bg from "@/public/homepage/bg_photo_ng.jpg";
 import mini_camera from "@/public/homepage/mini_camera.png";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import GradualSpacing from "@/components/gradual-spacing";
 
 const transition1 = {
     duration: 1.4,
@@ -14,120 +13,48 @@ const transition1 = {
 
 export default function Home() {
     return (
-        <div className={"bg-neutral-900"}>
-            {/* Sekcja tła */}
-            <div
-                className={"flex flex-row justify-end pr-20 items-center"}
-                style={{
-                    backgroundImage: "url('/homepage/bg_photo_1.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    height: "100vh",
-                    width: "100%",
-                }}
-            >
-                <div className={"flex flex-col my-10 mb-20"}>
-                    <div
-                        className={
-                            "bg-white border-2 text-center text-4xl font-integral-medium flex flex-row justify-center items-center gap-2"
-                        }
-                    >
-                        Fotner
-                        <Image
-                            src={mini_camera}
-                            alt={"Image mini_camera"}
-                            width={35}
-                        />
-                        Studio
-                    </div>
+        <div className={"bg-white"}>
+            <div className={"relative h-screen"}>
+                <div
+                    className="absolute text-white flex flex-row justify-center items-center font-integral-medium font-bold text-7xl pb-10 w-screen z-10"
+                    style={{
+                        background: "linear-gradient(180deg, rgba(0,0,0,1) 54%, rgba(0,0,0,0) 100%)",
+                    }}
+                >
+                    <Image
+                        src={mini_camera}
+                        alt={"Image mini_camera"}
+                        width={65}
+                        height={65}
+                        className={"invert mx-2"}
+                    />
 
-                    <div
-                        className={
-                            "text-white text-3xl font-integral-medium border-2 py-3 my-4 flex flex-col gap-3 justify-center text-center px-2"
-                        }
+                    <motion.div
+                        className={""}
+                        initial={{ opacity: 0, y: "-50%" }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: "-50%" }}
+                        transition={transition1}
                     >
-                        <div>Studniówki</div>
-                        <div
-                            className={
-                                "text-black stroke-2 stroke-white outline-2 border-solid"
-                            }
-                            style={{
-                                color: "black",
-                                WebkitTextStroke: "2px white",
-                                fontSize: "32px",
-                            }}
-                        >
-                            Rolki
-                        </div>
-                        <div>
-                            Materiały <br /> reklamowe
-                        </div>
-                        <div
-                            className={
-                                "text-black stroke-2 stroke-white outline-2 border-solid"
-                            }
-                            style={{
-                                color: "black",
-                                WebkitTextStroke: "2px white",
-                            }}
-                        >
-                            imprezy
-                        </div>
-                        <div>teledysi</div>
-                        <div
-                            className={
-                                "text-black stroke-2 stroke-white outline-2 border-solid"
-                            }
-                            style={{
-                                color: "black",
-                                WebkitTextStroke: "2px white",
-                            }}
-                        >
-                            wydarzenia sportowe
-                        </div>
-                        <div>wesela</div>
-                    </div>
-
-                    <div
-                        className={
-                            "text-white font-integral-medium text-2xl font-bold flex flex-row justify-between"
-                        }
-                    >
-                        <Link href={"/"}>
-                            <div
-                                className={
-                                    "bg-black p-2 hover:bg-white hover:text-black transition ease-out duration-200 border-2 border-whited"
-                                }
-                            >
-                                Kontakt
-                            </div>
-                        </Link>
-                        <Link href={"/"}>
-                            <div
-                                className={
-                                    "bg-black p-2 hover:bg-white hover:text-black transition ease-out duration-200 border-2 border-whited"
-                                }
-                            >
-                                Nasza praca
-                            </div>
-                        </Link>
-                        <Link href={"/"}>
-                            <div
-                                className={
-                                    "bg-black p-2 hover:bg-white hover:text-black transition ease-out duration-200 border-2 border-whited"
-                                }
-                            >
-                                Oferta
-                            </div>
-                        </Link>
-                    </div>
+                        <GradualSpacing text="Fotner Studio" />
+                    </motion.div>
                 </div>
-            </div>
 
-            <div style={{ height: "100vh", backgroundColor: "white" }}>
-                <h1>Reszta zawartości strony</h1>
+                <motion.div
+                    className="absolute w-full h-full z-0"
+                    initial={{ opacity: 0, y: "-50%" }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: "-50%" }}
+                    transition={transition1}
+                >
+                    <Image
+                        src={img_bg}
+                        alt={"Image background"}
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </motion.div>
             </div>
-
         </div>
     );
 }
